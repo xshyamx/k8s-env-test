@@ -1,0 +1,13 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - base.yml
+  - job-01.yml
+  - job-02.yml
+  - job-03.yml
+
+#namespace: default
+
+commonLabels:
+  app: env-test

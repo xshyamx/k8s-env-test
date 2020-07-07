@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: job-03
 spec:
+  completions: 1
   template:
     spec:
       restartPolicy: Never

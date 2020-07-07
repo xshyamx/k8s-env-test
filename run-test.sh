@@ -1,10 +1,6 @@
 #!/bin/sh
 
-kubectl create -f base.yml
-
-for i in 1 2 3; do
-  kubectl create -f job-0$i.yml
-done
+kubectl create -k .
 
 printf "Waiting for job to complete"
 
@@ -25,4 +21,4 @@ for i in 1 2 3; do
   kubectl logs $pod | grep 'key='
 done
 
-#kubectl delete -f .
+kubectl delete -k .
