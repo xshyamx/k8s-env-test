@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job-02
+spec:
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+      - name: env-test
+        image: busybox
+        command:
+        - env
+        envFrom:
+        - configMapRef:
+            name: base
+        - configMapRef:
+            name: override
