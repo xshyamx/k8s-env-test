@@ -4,7 +4,11 @@ kubectl create -k .
 
 printf "Waiting for job to complete"
 
-expected='1 1 1'
+expected=''
+for i in `seq 1 6`; do
+  expected="$expected 1"
+done
+expected=$(echo $expected | sed -e 's/^ //')
 actual=''
 while [ "$expected" != "$actual" ]; do
   actual=$(kubectl get jobs -o jsonpath={.items[*].status.succeeded})
@@ -15,7 +19,7 @@ echo done
 
 #kubectl get pods -l app=env-test -o jsonpath={.items[*].status.containerStatuses[*]}
 
-for i in 1 2 3; do
+for i in `seq 1 6`; do
   pod=$(kubectl get pod -l job-name=job-0$i -o jsonpath={.items[*].metadata.name})
   printf "job-%02d: " $i
   kubectl logs $pod | grep 'key='

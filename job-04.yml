@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: job-03
+  name: job-04
 spec:
   completions: 1
   template:
@@ -19,3 +19,5 @@ spec:
             name: override
         - secretRef:
             name: base
+        - secretRef:
+            name: override

@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: base
 data:
-  key: base
+  key: configmap
 ---
 
 apiVersion: v1
@@ -11,13 +11,22 @@ kind: ConfigMap
 metadata:
   name: override
 data:
-  key: override
+  key: configmap-override
 ---
 
 apiVersion: v1
 kind: Secret
 metadata:
-  name: secret-override
+  name: base
 type: Opaque
 stringData:
   key: secret
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: override
+type: Opaque
+stringData:
+  key: secret-override

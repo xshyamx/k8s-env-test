@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: job-03
+  name: job-06
 spec:
   completions: 1
   template:
@@ -11,7 +11,13 @@ spec:
       - name: env-test
         image: busybox
         command:
-        - env
+        - /bin/sh
+        - -c
+        args:
+        - export key=command && env
+        env:
+        - name: key
+          value: inline
         envFrom:
         - configMapRef:
             name: base
@@ -19,3 +25,5 @@ spec:
             name: override
         - secretRef:
             name: base
+        - secretRef:
+            name: override

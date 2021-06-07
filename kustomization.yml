@@ -6,6 +6,9 @@ resources:
   - job-01.yml
   - job-02.yml
   - job-03.yml
+  - job-04.yml
+  - job-05.yml
+  - job-06.yml
 
 #namespace: default
 
